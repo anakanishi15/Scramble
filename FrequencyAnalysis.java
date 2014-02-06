@@ -10,7 +10,7 @@ public class FrequencyAnalysis
     Scanner kb = new Scanner(System.in);//sets up scanner
     System.out.println("Put message.");
     String message = kb.nextLine();//input into console.
-    String analyze = message.toLowerCase();//sets all letters to standard case
+    String analyze = message.toUpperCase();//sets all letters to standard case
     messageLength = analyze.length();//sets length of message
     System.out.println("1. Search for individual letter");
     System.out.println("2. Print whole chart");
@@ -19,7 +19,7 @@ public class FrequencyAnalysis
     {
       System.out.println("Which letter?");
       kb.nextLine();//because it reads the new line, so I listened to Ms. Nagoshi.
-      String letter = kb.nextLine();//input letter stuffs
+      String letter = kb.nextLine().toUpperCase();//input letter stuffs, turns it into uppercase so it works with the letters
       int letterNumber = letter(letter, analyze);//letter looking for, message string, gets number of times letter appears
       double percent = percentage(letterNumber,analyze);//letter looking for, message string, gets percent value of #
       System.out.println(letter + " = " + percent);//prints out percentage for that one letter
@@ -28,7 +28,7 @@ public class FrequencyAnalysis
     {
       for(int i = 0; i<26; i++)//for loop, going through each letter in the alphabet
       {
-        String letter = String.valueOf((char)(i+97));//Ms. Nagoshi helped me. She found this on the internet. Had to adapt it to lowercase
+        String letter = String.valueOf((char)(i+65));//Ms. Nagoshi helped me. She found this on the internet. Works with decimal
         int letterNumber = letter(letter,analyze);//finds number of occurrences of letter
         double percent = percentage(letterNumber,analyze);//gets percentage for letter
         System.out.println(letter + " = " + percent);//prints out percentage for that one letter
@@ -52,6 +52,7 @@ public class FrequencyAnalysis
   public static double percentage(int letterNumber, String analyze)//takes number, and string converts it to percentage
   {
     Double percent = (double)letterNumber/analyze.length();//changes it to percentages
+    percent = percent*100;
     return percent;
   }
 }
