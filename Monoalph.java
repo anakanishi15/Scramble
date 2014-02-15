@@ -47,45 +47,51 @@ public class Monoalph
         plaintext[((i+cIndex)%26)] = cyphertext[((i+pIndex)%26)].toLowerCase();//fills the plaintext grid. Since cyphertext is ordered alphabetically, can just set index of plaintext that want to start on, and work from there.
         //has to be cIndex in plaintext array because you're finding the matching cyphertext index so you know which index to put into.
       }
+      for (int i = 0; i < 26; i++)
+      {
+        message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+      }
     }
-  }
-  else if(mode == 2)
-  {
-    String cLetter = "";//declaring string.
-    int check = 0;//needs to return extra line on the first time.
-    while(!(cLetter.equals("END")))//MIGHT CONSIDER JUST OVERRIDE IF SEE END, CAUSE OTHERWISE SCREWS UP SETUP.
-    {
-      System.out.println("Please enter cyphertext letter, 'print', or 'end'.");//prompt, need to repeat it 
-      if (check == 0)//need this, otherwise skips first one.
+    else if(mode == 2)     {
+      String cLetter = "";//declaring string.
+      int check = 0;//needs to return extra line on the first time.
+      while(!(cLetter.equals("END")))//MIGHT CONSIDER JUST OVERRIDE IF SEE END, CAUSE OTHERWISE SCREWS UP SETUP.
       {
-        kb.nextLine();//so that it has both boxes, cause otherwise the enter cancels it.
-      }
-      cLetter = kb.nextLine().toUpperCase();//needs to be uppercase to run match so can find right space
-      if(cLetter.equals("print"))//if print is typed in
-      {
-        //print array, but come back
-      }
-      {
-        for (int i = 0; i<26; i++)
+        System.out.println("Please enter cyphertext letter, 'print', or 'end'.");//prompt, need to repeat it 
+        if (check == 0)//need this, otherwise skips first one.
         {
-          if (cyphertext[i].equals(cLetter))//locates the cyphertext letter
-          {
-            cIndex = i;//saves the index of the matching cyphertext letter.
-          }
+          kb.nextLine();//so that it has both boxes, cause otherwise the enter cancels it.
         }
-        System.out.println("Please enter matching plaintext letter.");//prompt
-        String pLetter = kb.nextLine().toUpperCase();//need to have it uppercase to trigger
-        plaintext[cIndex] = pLetter.toLowerCase();//finds corresponding block in plaintext array and fills it with the plaintext letter inputted.
-        check = 1;
+        cLetter = kb.nextLine().toUpperCase();//needs to be uppercase to run match so can find right space
+        if(cLetter.equals("print"))//if print is typed in
+        {
+          //print array, but come back
+        }
+        {
+          for (int i = 0; i<26; i++)
+          {
+            if (cyphertext[i].equals(cLetter))//locates the cyphertext letter
+            {
+              cIndex = i;//saves the index of the matching cyphertext letter.
+            }
+          }
+          System.out.println("Please enter matching plaintext letter.");//prompt
+          String pLetter = kb.nextLine().toUpperCase();//need to have it uppercase to trigger
+          plaintext[cIndex] = pLetter.toLowerCase();//finds corresponding block in plaintext array and fills it with the plaintext letter inputted.
+          check = 1;
+        }
       }
-      //print out message
+      for (int i = 0; i < 26; i++)
+      {
+        message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+      }
     }
-    for (int i = 0; i<26; i++)//to print array. Delete later.
-    {
-      System.out.println(cyphertext[i]);
-      System.out.println(plaintext[i]);
-    }
+    /*for (int i = 0; i<26; i++)//to print array. Delete later.
+     {
+     System.out.println(cyphertext[i]);
+     System.out.println(plaintext[i]);
+     }*/
+    System.out.println(message);//would return this message in the end.
   }
-}
 }
 //do something like input letter, but if want to end, type end. cause char. maybe if caesar cypher type caesar

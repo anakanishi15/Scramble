@@ -22,7 +22,7 @@ public class FrequencyAnalysis
       String letter = kb.nextLine().toUpperCase();//input letter stuffs, turns it into uppercase so it works with the letters
       int letterNumber = letter(letter, analyze);//letter looking for, message string, gets number of times letter appears
       double percent = percentage(letterNumber,analyze);//letter looking for, message string, gets percent value of #
-      System.out.println(letter + " = " + percent);//prints out percentage for that one letter
+      System.out.println(letter + " = " + percent + "%");//prints out percentage for that one letter
     }
     else if(answer == 2)//if want a list of percentages
     {
@@ -31,7 +31,7 @@ public class FrequencyAnalysis
         String letter = String.valueOf((char)(i+65));//Ms. Nagoshi helped me. She found this on the internet. Works with decimal
         int letterNumber = letter(letter,analyze);//finds number of occurrences of letter
         double percent = percentage(letterNumber,analyze);//gets percentage for letter
-        System.out.println(letter + " = " + percent);//prints out percentage for that one letter
+        System.out.println(letter + " = " + percent + "%");//prints out percentage for that one letter
       }
     }
   }
