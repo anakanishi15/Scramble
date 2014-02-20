@@ -2,14 +2,20 @@
 //1/30/14
 //Frequency analysis method. Returns either table of values or individual value for letter requested. In %
 import java.util.Scanner;
+
 public class FrequencyAnalysis
 {
-  public static void main(String[]args)
+  private String message;//instance variable
+  
+  public FrequencyAnalysis(String newmessage)//constructor
+  {
+    message = newmessage;//input = message
+  }
+  
+  public void setUp()//sets up format of the final chart. 
   {
     int messageLength = 0;//declares and initializes length of message
     Scanner kb = new Scanner(System.in);//sets up scanner
-    System.out.println("Put message.");
-    String message = kb.nextLine();//input into console.
     String analyze = message.toUpperCase();//sets all letters to standard case
     messageLength = analyze.length();//sets length of message
     System.out.println("1. Search for individual letter");
@@ -36,7 +42,7 @@ public class FrequencyAnalysis
     }
   }
   
-  public static int letter(String letter, String analyze)//takes letter and string
+  public int letter(String letter, String analyze)//takes letter and string
   {
     int count = 0;//count of letter
     for(int i = 0; i<analyze.length(); i++)//runs through whole string looking for that letter
@@ -49,11 +55,10 @@ public class FrequencyAnalysis
     return count;//returns count of that letter
   }
   
-  public static double percentage(int letterNumber, String analyze)//takes number, and string converts it to percentage
+  public double percentage(int letterNumber, String analyze)//takes number, and string converts it to percentage
   {
     Double percent = (double)letterNumber/analyze.length();//changes it to percentages
     percent = percent*100;
     return percent;
   }
 }
-  

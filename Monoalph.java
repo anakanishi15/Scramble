@@ -6,13 +6,19 @@ import java.util.Scanner;
 
 public class Monoalph
 {
-  public static void main(String[]args)
+  private String message = "";//instance variable
+  
+  public Monoalph(String newmessage)
+  {
+    message = newmessage;//constructor
+  }
+  
+  public void setUp()//sets up format of the final chart
   {
     String[] cyphertext = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};//declares array with every letter
     String[] plaintext = new String[26];//declares array for plaintext. Cyphertext stays in place, array is blank so can input.
     Scanner kb = new Scanner(System.in);//sets up Scanner
-    System.out.println("Please enter message");//prompt. I sort of want to leave it all blank, the prompts because that way only I'd know what to do.
-    String message = kb.nextLine().toUpperCase();//takes in message, converts it to uppercase.
+    message = message.toUpperCase();//converts message to uppercase.
     System.out.println("Which mode do you want?");//prompt
     System.out.println("1. Caesar");//for Caesar shift.
     System.out.println("2. Monoalph");//for all other monoalphs
