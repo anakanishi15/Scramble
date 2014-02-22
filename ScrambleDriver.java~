@@ -2,12 +2,38 @@
 //Driver
 //2/14/14
 
-import java.util.Scanner;
+import java.util.*;//means import everything from java utilities, which is what * means
+import java.io.*;
 
 public class ScrambleDriver
 {
-  public static void main(String[]args)
+  public static void main(String[]args) throws FileNotFoundException//if no file is found, throws error that says no file found. Try catch exception? File not found exception needs to be imported
   {
-    
+    String message = "";//sets up variable for message
+    Scanner kb = new Scanner(System.in);//sets up scanner
+    System.out.println("put file name");
+    String name = "./Files/" + kb.nextLine();//for file name
+    Scanner x = new Scanner(new File(name));//to read in file.
+    while (x.hasNext())//while there's still something new to be read in
+    {
+       message += x.nextLine();//will read in the file
+    }
+    message = message.replaceAll("[^A-Za-z0-9]", "");//from stackoverflow. Replaces all nonalphanumeric characters
+    System.out.println(message);
+    System.out.println("1. Frequency Analysis");//choices
+    System.out.println("2. Monoalph");
+    int choice = kb.nextInt();//takes in choice
+    if (choice == 1)
+    {
+      FrequencyAnalysis thing = new FrequencyAnalysis(message);//new object
+      thing.setUp();//runs the message through frequency analysis
+    }
+    else if(choice == 2)
+    {
+      Monoalph thing = new Monoalph(message);//new object
+      thing.setUp();//runs the monoalph
+    }
   }
 }
+
+//system arguments... preface file with ./foldername
