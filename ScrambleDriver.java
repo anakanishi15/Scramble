@@ -8,19 +8,31 @@ import java.io.*;
 public class ScrambleDriver
 {
   public static void main(String[]args) throws IOException//Ms. Nagoshi helped me. if no file is found, throws error that says no file found. Try catch exception? File not found exception needs to be also can write 'throws FileNotFoundException'
-    //why does 'throws FileNotFoundException' not always work for more than one.
+  //why does 'throws FileNotFoundException' not always work for more than one.
   {
     String message = "";//sets up variable for message
     Scanner kb = new Scanner(System.in);//sets up scanner
-    System.out.println("put file name");
-    String name = "./Files/" + kb.nextLine();//for file name. Ms. Nagoshi helped me with this part. (The next like 6 lines)
-    Scanner x = new Scanner(new File(name));//to read in file.
-    while (x.hasNext())//while there's still something new to be read in
+    System.out.println("Existing file?");
+    String exist = kb.nextLine().toLowerCase();//if a file exists
+    kb.nextLine();
+    if (exist == "yes")//Bri's idea to check if want to make a file.
     {
-      message += x.nextLine();//will read in the file
+      System.out.println("put file name");
+      String name = "./Files/" + kb.nextLine();//for file name. Ms. Nagoshi helped me with this part. (The next like 6 lines)
+      Scanner x = new Scanner(new File(name));//to read in file.
+      while (x.hasNext())//while there's still something new to be read in
+      {
+        message += x.nextLine();//will read in the file
+      }
     }
-    //message = message.replaceAll("[^A-Za-z0-9]", "");//from stackoverflow. Replaces all nonalphanumeric characters
-    //do you want to strip punctuation or spaces or...?
+    else if(exist == "no")//if file doesn't exist.
+    {
+      System.out.println("Type file name.");
+      String newFileName = kb.nextLine();
+      File different = new File(newFileName + ".txt");//file name + .txt to make the file
+      different.createNewFile();
+    }
+    message = message.replaceAll("[^A-Za-z0-9]", "");//from stackoverflow. Replaces all nonalphanumeric characters
     System.out.println(message);
     System.out.println("1. Frequency Analysis");//choices
     System.out.println("2. Monoalph");
