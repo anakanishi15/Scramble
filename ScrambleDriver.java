@@ -12,13 +12,15 @@ public class ScrambleDriver
   {
     String message = "";//sets up variable for message
     Scanner kb = new Scanner(System.in);//sets up scanner
+    String fileName = "";//save name of the file made or file chosen to.
     System.out.println("Existing file? Yes/No");
     String exist = kb.nextLine().toLowerCase();//if a file exists
     if (exist.equals("yes"))//Bri's idea to check if want to make a file.
     {
-      System.out.println("put file name (including extentions)");
+      System.out.println("put file name (including extentions. usu. '.txt')");
       String name = "./Files/" + kb.nextLine();//for file name. Ms. Nagoshi helped me with this part. (The next like 6 lines)
       Scanner x = new Scanner(new File(name));//to read in file.
+      fileName = name.substring(0,name.length()-4);//saves name (and path) of file to the file without .txt extention
       while (x.hasNext())//while there's still something new to be read in
       {
         message += x.nextLine();//will read in the file
@@ -31,30 +33,30 @@ public class ScrambleDriver
       File different = new File("./Files/" + newFileName + ".txt");//file name + .txt to make the file Part before is for location.
       //WHAT IF SAME FILE EXISTS? OVERWRITE? Won't overwrite.
       different.createNewFile();
+      String nameVariable = ("./Files/" + newFileName);//saves the name of the file without the .txt
+      fileName = nameVariable;//saves the name of the wile without .txt to variable outside loop
       System.out.println("Enter text.");//prompt
       message = kb.nextLine();//gets text
       FileWriter wr = new FileWriter(different);//yay internet. Writes text to file. This gets the file in question
       wr.write(message);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
-      //want to write text to document here.
     }
     System.out.println(message);
     System.out.println("1. Frequency Analysis");//choices
     System.out.println("2. Monoalph");
     int choice = kb.nextInt();//takes in choice
-    if (choice == 1)
+    if (choice == 1)//hahaha It's done~
     {
-      FrequencyAnalysis thing = new FrequencyAnalysis(message);//new object
+      FrequencyAnalysis thing = new FrequencyAnalysis(message, fileName);//new object
       thing.setUp();//runs the message through frequency analysis
-      //want result to be printed to file. Create new one, probably. So there's one for the start text, and one for the finish.
     }
     else if(choice == 2)
     {
-      Monoalph thing = new Monoalph(message);//new object
+      Monoalph thing = new Monoalph(message, fileName);//new object
       thing.setUp();//runs the monoalph
-      //same as in Freq Ana part.
     }
   }
 }
 
 //system arguments... preface file with ./foldername
+// /n if it's typed within a "", means new line.
