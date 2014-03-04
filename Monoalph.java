@@ -83,9 +83,9 @@ public class Monoalph
         {
           printNum++;
           File end = new File(fileName + "Monoalphprint" + printNum + ".txt");//name of file
-          for (int i = 0; i < 26; i++)//gets stuck here. why? works fine up.
+          for (int i = 0; i < 26; i++)//runs through and replaces letters within the text
           {
-            if(!(plaintext[i] == null))
+            if(!(plaintext[i] == null))//checks for null cause otherwise nullpointerexception.
             {
               message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
             }
