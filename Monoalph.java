@@ -85,10 +85,10 @@ public class Monoalph
           File end = new File(fileName + "Monoalphprint" + printNum + ".txt");//name of file
           for (int i = 0; i < 26; i++)//gets stuck here. why? works fine up.
           {
-                    System.out.println("p");
-        System.out.println(plaintext[2]);
-        System.out.println("s");
-            message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+            if(!(plaintext[i] == null))
+            {
+              message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+            }
           }
           FileWriter wr = new FileWriter(end);//yay internet. Writes text to file. This gets the file in question
           wr.write(message);//writes message to file.
