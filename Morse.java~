@@ -1,0 +1,21 @@
+//Amanda Nakanishi
+//2/21/14
+//Morse Code. Why? I got bored
+
+import java.util.Scanner;
+
+public class Morse
+{
+  private String message = "";//instance variable
+  
+  public Morse(String newmessage)
+  {
+    message = newmessage;//constructor
+  }
+  
+  public void setUp()//sets up morse code
+  {
+    String[] english = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};//declares array with every letter
+    String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."}// international morse code A-Z
+    String[] plaintext = new String[26];//declares array for plaintext. english and morse code reference array stays in place, array is blank so can input.
+    
