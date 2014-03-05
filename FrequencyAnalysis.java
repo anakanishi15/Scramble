@@ -52,6 +52,7 @@ public class FrequencyAnalysis
       wr.write(nMessage);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
     }
+    System.out.println("done."); //informs user of completed task
   }
   
   public int letter(String letter, String analyze)//takes letter and string

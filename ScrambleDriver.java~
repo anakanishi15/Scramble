@@ -31,7 +31,7 @@ public class ScrambleDriver
       System.out.println("Type file name. Don't put the extention");
       String newFileName = kb.nextLine();
       File different = new File("./Files/" + newFileName + ".txt");//file name + .txt to make the file Part before is for location.
-      //WHAT IF SAME FILE EXISTS? OVERWRITE? Won't overwrite.
+      //WHAT IF SAME FILE EXISTS? OVERWRITE? Won't overwrite. will if text is written into.
       different.createNewFile();
       String nameVariable = ("./Files/" + newFileName);//saves the name of the file without the .txt
       fileName = nameVariable;//saves the name of the wile without .txt to variable outside loop

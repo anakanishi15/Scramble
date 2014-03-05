@@ -69,8 +69,14 @@ public class FrequencyAnalysis
   
   public double percentage(int letterNumber, String analyze)//takes number, and string converts it to percentage
   {
-    Double percent = (double)letterNumber/analyze.length();//changes it to percentages
-    percent = percent*100;
+    Double percent = (double)letterNumber/analyze.length();//changes it to decmials
+    percent = percent*100;//turns it into a percent
+    String cutPercent = Double.toString(percent);//sets to string (internet)
+    if(cutPercent.length()>5)
+    {
+    cutPercent = cutPercent.substring(0,5);//Goes to three decimals points, always rounds down. 
+    }
+    percent = Double.parseDouble(cutPercent);//turns it back into double. (internet)
     return percent;
   }
 }

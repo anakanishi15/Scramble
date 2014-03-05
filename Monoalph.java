@@ -67,11 +67,11 @@ public class Monoalph
       wr.write(message);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
     }
-    else if(mode == 2)    
+    else if(mode == 2)//second part  
     {
       int check = 0;//needs to return extra line on the first time.
       int printNum = 0;//to see which iteration of the print it is. So things don't get overwritten
-      while((!(cLetter.equals("END")))||(!(pLetter.equals("END"))))//MIGHT CONSIDER JUST OVERRIDE IF SEE END, CAUSE OTHERWISE SCREWS UP SETUP.
+      while((!(cLetter.equals("END"))))//while loop, keeps on prompting
       {
         System.out.println("Please enter cyphertext letter, 'print', or 'end'.");//prompt, need to repeat it 
         if (check == 0)//need this, otherwise skips first one.
@@ -79,9 +79,9 @@ public class Monoalph
           kb.nextLine();//so that it has both boxes, cause otherwise the enter cancels it.
         }
         cLetter = kb.nextLine().toUpperCase();//needs to be uppercase to run match so can find right space
-        if((cLetter.equals("PRINT")) || (pLetter.equals("PRINT")))//if print is typed in
+        if((cLetter.equals("PRINT")))//if print is typed in
         {
-          printNum++;
+          printNum++;//adds to print so won't overwrite text already in file.
           File end = new File(fileName + "Monoalphprint" + printNum + ".txt");//name of file
           for (int i = 0; i < 26; i++)//runs through and replaces letters within the text
           {
@@ -94,17 +94,16 @@ public class Monoalph
           wr.write(message);//writes message to file.
           wr.close();//closes
         }
-        else if(!(cLetter.equals("END")))
+        else if(!(cLetter.equals("END")))//so end registers as a different command and it doesn't fill a slot
         {
-          System.out.print("loading");
-          for (int i = 0; i<26; i++)
+          for (int i = 0; i<26; i++)//runs through and figures out where the letter goes
           {
             if (cyphertext[i].equals(cLetter))//locates the cyphertext letter
             {
               cIndex = i;//saves the index of the matching cyphertext letter.
             }
           }
-          System.out.println("Please enter matching plaintext letter, 'end', or 'print'.");//prompt
+          System.out.println("Please enter matching plaintext letter, or 'end'.");//prompt
           pLetter = kb.nextLine().toUpperCase();//need to have it uppercase to trigger
           plaintext[cIndex] = pLetter.toLowerCase();//finds corresponding block in plaintext array and fills it with the plaintext letter inputted.
           check = 1;
@@ -112,14 +111,17 @@ public class Monoalph
       }
       for (int i = 0; i < 26; i++)//for when you want to print and not come back.
       {
-        message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+        if(!(plaintext[i] == null))//checks for null cause otherwise nullpointerexception.
+            {
+              message = message.replaceAll(cyphertext[i], plaintext[i]);//replaces each letter. Can't be in previous for loop because of unfilled overlap.
+            }
       }
-      File end = new File(fileName + "Monoalph.txt");
+      File end = new File(fileName + "Monoalph.txt");//name of file
       FileWriter wr = new FileWriter(end);//yay internet. Writes text to file. This gets the file in question
       wr.write(message);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
     }
-    System.out.println("done");
+    System.out.println("done");//informs user done.
   }
   //should make a fill method?
 }
