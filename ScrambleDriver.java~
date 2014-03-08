@@ -41,9 +41,9 @@ public class ScrambleDriver
       wr.write(message);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
     }
-    System.out.println(message);
     System.out.println("1. Frequency Analysis");//choices
     System.out.println("2. Monoalph");
+    System.out.println("3. Morse");
     int choice = kb.nextInt();//takes in choice
     if (choice == 1)//hahaha It's done~
     {
@@ -54,6 +54,11 @@ public class ScrambleDriver
     {
       Monoalph thing = new Monoalph(message, fileName);//new object
       thing.setUp();//runs the monoalph
+    }
+    else if(choice == 3)
+    {
+      Morse thing = new Morse(message, fileName);//new object
+      thing.setUp();//runs morse filter
     }
   }
 }

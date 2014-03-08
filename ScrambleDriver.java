@@ -17,7 +17,7 @@ public class ScrambleDriver
     String exist = kb.nextLine().toLowerCase();//if a file exists
     if (exist.equals("yes"))//Bri's idea to check if want to make a file.
     {
-      System.out.println("put file name (including extentions. usu. '.txt')");
+      System.out.println("Refer to folder for files. Put file name (including extentions. usu. '.txt')");
       String name = "./Files/" + kb.nextLine();//for file name. Ms. Nagoshi helped me with this part. (The next like 6 lines)
       Scanner x = new Scanner(new File(name));//to read in file.
       fileName = name.substring(0,name.length()-4);//saves name (and path) of file to the file without .txt extention
@@ -28,7 +28,7 @@ public class ScrambleDriver
     }
     else if(exist.equals("no"))//if file doesn't exist. Note: be careful with strings and ==
     {
-      System.out.println("Type file name. Don't put the extention");
+      System.out.println("Type file name. Don't put the extention.");
       String newFileName = kb.nextLine();
       File different = new File("./Files/" + newFileName + ".txt");//file name + .txt to make the file Part before is for location.
       //WHAT IF SAME FILE EXISTS? OVERWRITE? Won't overwrite. will if text is written into.
@@ -41,9 +41,9 @@ public class ScrambleDriver
       wr.write(message);//writes message to file. REWRITES ANY EXISTING TEXT. BE CAREFUL.
       wr.close();//closes
     }
-    System.out.println(message);
     System.out.println("1. Frequency Analysis");//choices
     System.out.println("2. Monoalph");
+    //System.out.println("3. Morse");
     int choice = kb.nextInt();//takes in choice
     if (choice == 1)//hahaha It's done~
     {
@@ -54,6 +54,11 @@ public class ScrambleDriver
     {
       Monoalph thing = new Monoalph(message, fileName);//new object
       thing.setUp();//runs the monoalph
+    }
+    else if(choice == 3)
+    {
+      Morse thing = new Morse(message, fileName);//new object
+      thing.setUp();//runs morse filter
     }
   }
 }
