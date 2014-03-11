@@ -55,11 +55,11 @@ public class ScrambleDriver
       Monoalph thing = new Monoalph(message, fileName);//new object
       thing.setUp();//runs the monoalph
     }
-    else if(choice == 3)
+    /*else if(choice == 3)
     {
       Morse thing = new Morse(message, fileName);//new object
       thing.setUp();//runs morse filter
-    }
+    }*/
   }
 }
 
